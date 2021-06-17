@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smokesuite" thread-count="1" data-provider-thread-count="1" parallel="classes">
+  <listeners>
+  <listener class-name="com.webdriverback.Webdriverlistener"/>
+  </listeners>
+  <test name="Ordercheckout">
+  <parameter name="browser" value="chrome"/>
+  <parameter name="url" value="https://www.amazon.com"/>
+  <parameter name="exemode" value="local"/>
+  <classes>
+  	<class name="com.runner.Orderrunner"/>
+  </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
