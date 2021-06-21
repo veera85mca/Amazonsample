@@ -12,6 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.report.Myreports;
+import com.utills.Dataprovider;
 import com.webdriverback.Webdriveractions;
 
 public class Homepage extends Webdriveractions{
@@ -20,18 +21,11 @@ public class Homepage extends Webdriveractions{
 	public By _productsearchbar = By.id("twotabsearchtextbox");
 	public By _productsuggestlist = By.xpath("//div[starts-with(@id,'issDiv')]");
 	public By _submit = By.xpath("//input[@type='submit']");
-	public String productname;
 	
-	public Homepage()
-	{
-		try {
-			Properties prob=new Properties();
-			prob.load(new FileInputStream(new File("./Myproperty/env.properties")));
-			productname = prob.getProperty("Productname");	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private static enum exceltestcolumn {
+		Productname
 	}
+	
 	public void Verifyhomepage() {
 		try {
 			if(Webdriveractions.iselementdisplayed(_amazonhomeimage)) {
@@ -45,15 +39,18 @@ public class Homepage extends Webdriveractions{
 	}
 	public void Searchbar() {
 		try {
-			boolean listcount = false;
-			typeValue(_productsearchbar, productname);
+			boolean listcount = false;	
+			String product = Dataprovider.getExcelData(exceltestcolumn.Productname.toString());
+			typeValue(_productsearchbar, product);
 			List<WebElement> allsearch = getdriver().findElements(_productsuggestlist);
-			listwebelementdispalyed(allsearch);
-			for(int i=0;i<allsearch.size();i++) {
-				if(productname.toLowerCase().equals(allsearch.get(i).getText())){
-					allsearch.get(i).click();
-					listcount = true;
-					break;
+			if(allsearch.size()>0) {
+				listwebelementdispalyed(allsearch);
+				for(int i=0;i<allsearch.size();i++) {
+					if(product.toLowerCase().equals(allsearch.get(i).getText())){
+						allsearch.get(i).click();
+						listcount = true;
+						break;
+					}
 				}
 			}
 			if(listcount) {

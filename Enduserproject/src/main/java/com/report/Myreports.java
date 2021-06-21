@@ -66,5 +66,8 @@ public class Myreports {
 	{
 		return (ExtentTest) TestState.get((int) (long) (Thread.currentThread().getId()));
 	}
+	public static synchronized int getTestId() {
+		return (int) (long) (Thread.currentThread().getId());
+	}
 }
 
