@@ -1,10 +1,8 @@
 package com.stepdefinition;
 
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.report.Myreports;
-import com.webdriverback.Webdriveractions;
 import com.webdriverback.Webdrivermanager;
 
 import cucumber.api.Scenario;
@@ -13,7 +11,7 @@ import cucumber.api.java.Before;
 
 
 
-public class Hooks extends Webdriveractions {
+public class Hooks extends Webdrivermanager {
 	@Before
 	public void beforescenario(Scenario scenaname)
 	{

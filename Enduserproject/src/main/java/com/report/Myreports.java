@@ -2,12 +2,10 @@ package com.report;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 import com.relevantcodes.extentreports.*;
@@ -52,16 +50,16 @@ public class Myreports {
 		extend.endTest((ExtentTest) gettest());
 		extend.flush();
 	}
-	public synchronized static void addlogs(String stepname, String status)
+	public synchronized static void addlogs(String desc, String status)
 	{
 		if(status.equalsIgnoreCase("Pass"))
 		{
-			gettest().log(LogStatus.PASS, stepname);
+			gettest().log(LogStatus.PASS, desc);
 			//test.log(LogStatus.PASS, stepname);
 		}else if (status.equalsIgnoreCase("Fail")) {
-			gettest().log(LogStatus.FAIL, stepname);		
+			gettest().log(LogStatus.FAIL, desc);		
 		}else if (status.equalsIgnoreCase("Info")) {
-			gettest().log(LogStatus.INFO, stepname);		
+			gettest().log(LogStatus.INFO, desc);		
 		}
 	}
 	private synchronized static ExtentTest gettest()

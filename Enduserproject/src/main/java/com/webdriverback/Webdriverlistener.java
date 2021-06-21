@@ -4,7 +4,7 @@ import org.testng.IInvokedMethodListener;
 import org.testng.IInvokedMethod;
 import org.testng.ITestResult;
 
-public class Webdriverlistener extends Webdriveractions implements IInvokedMethodListener {
+public class Webdriverlistener extends Webdrivermanager implements IInvokedMethodListener {
 
 	public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
 		if (method.isTestMethod()) {
